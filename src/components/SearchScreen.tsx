@@ -11,6 +11,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
 import { Badge } from './ui/badge';
 import * as booksService from '../services/books';
 import * as usersService from '../services/users';
+import logoIcon from 'figma:asset/52156acc301f7deb215318a5ad8c77764dbb9d14.png';
 
 interface SearchScreenProps {
   currentUser: User;
@@ -108,7 +109,7 @@ export function SearchScreen({ currentUser, onBookSelect, onFollow, isFollowing,
 
   return (
     <div className="pb-20">
-      <div className="bg-white border-b border-gray-200 sticky top-0 z-10 px-4 py-4 space-y-3">
+      <div className="bg-white border-b border-gray-200 sticky top-0 z-10 px-3 sm:px-4 py-3 sm:py-4 space-y-3">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
           <Input

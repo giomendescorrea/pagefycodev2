@@ -9,6 +9,7 @@ import { Switch } from './ui/switch';
 import { User as UserType } from '../App';
 import { Edit2, Users, UserPlus, UserCheck, Lock, Globe } from 'lucide-react';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from './ui/dialog';
+import logoIcon from 'figma:asset/52156acc301f7deb215318a5ad8c77764dbb9d14.png';
 
 interface ProfileScreenProps {
   user: UserType;
@@ -65,29 +66,29 @@ export function ProfileScreen({
 
   return (
     <div className="pb-20">
-      <div className="px-4 py-6 space-y-6">
+      <div className="px-3 sm:px-4 py-4 sm:py-6 space-y-4 sm:space-y-6">
         {/* Profile Header */}
         <Card>
-          <CardContent className="p-6">
+          <CardContent className="p-4 sm:p-6">
             <div className="flex items-start justify-between mb-4">
-              <div className="flex items-center gap-4">
-                <Avatar className="h-20 w-20">
-                  <AvatarFallback className="text-xl">{getInitials(user.name)}</AvatarFallback>
+              <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+                <Avatar className="h-16 w-16 sm:h-20 sm:w-20 flex-shrink-0">
+                  <AvatarFallback className="text-lg sm:text-xl">{getInitials(user.name)}</AvatarFallback>
                 </Avatar>
-                <div>
-                  <h2 className="text-gray-900">{user.name}</h2>
-                  <p className="text-gray-600">{user.email}</p>
+                <div className="min-w-0">
+                  <h2 className="text-gray-900 truncate">{user.name}</h2>
+                  <p className="text-gray-600 text-sm truncate">{user.email}</p>
                   <div className="flex items-center gap-2 mt-2">
-                    <span className="px-2 py-1 bg-[#e8f5f5] text-[#1c5052] rounded text-sm">
+                    <span className="px-2 py-1 bg-[#e8f5f5] text-[#1c5052] rounded text-xs sm:text-sm">
                       {user.role === 'admin' ? 'Administrador' : user.role === 'publisher' ? 'Publicador' : 'Leitor'}
                     </span>
                   </div>
                 </div>
               </div>
               {!isEditing && (
-                <Button variant="outline" size="sm" onClick={() => setIsEditing(true)}>
-                  <Edit2 className="h-4 w-4 mr-2" />
-                  Editar
+                <Button variant="outline" size="sm" onClick={() => setIsEditing(true)} className="flex-shrink-0">
+                  <Edit2 className="h-4 w-4 sm:mr-2" />
+                  <span className="hidden sm:inline">Editar</span>
                 </Button>
               )}
             </div>

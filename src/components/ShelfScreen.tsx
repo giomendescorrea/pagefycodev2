@@ -12,6 +12,7 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { useState, useEffect } from 'react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import * as booksService from '../services/books';
+import logoIcon from 'figma:asset/52156acc301f7deb215318a5ad8c77764dbb9d14.png';
 
 interface ShelfScreenProps {
   currentUser: User;
@@ -324,7 +325,7 @@ export function ShelfScreen({
   return (
     <div className="pb-20">
       <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as 'books' | 'notes' | 'reviews')} className="w-full">
-        <div className="bg-white border-b border-gray-200 sticky top-[57px] z-10">
+        <div className="bg-white border-b border-gray-200 sticky top-[73px] z-10">
           <TabsList className="grid w-full grid-cols-3 h-12 rounded-none border-b">
             <TabsTrigger value="books" className="rounded-none">
               <BookOpen className="h-4 w-4 mr-2" />

@@ -35,6 +35,7 @@ import * as commentsService from "./services/comments";
 import * as postsService from "./services/posts";
 import * as emailService from "./services/email";
 import * as bookStatsService from "./services/book-stats";
+import logoIcon from 'figma:asset/52156acc301f7deb215318a5ad8c77764dbb9d14.png';
 
 type View =
   | "login"
@@ -1314,22 +1315,25 @@ export default function App() {
 
           {/* Top Bar with Notification Bell */}
           {navView !== "home" && (
-            <div className="bg-white border-b border-gray-200 sticky top-0 z-20 px-4 py-3 flex items-center justify-between">
-              <h2 className="text-gray-900">
-                {navView === "search" && "Buscar"}
-                {navView === "shelf" && "Estante"}
-                {navView === "profile" && "Perfil"}
-                {navView === "menu" && "Menu"}
-              </h2>
+            <div className="bg-white border-b border-gray-200 sticky top-0 z-20 px-3 sm:px-4 py-3 flex items-center justify-between">
+              <div className="flex items-center gap-2 min-w-0">
+                <img src={logoIcon} alt="Pagefy" className="h-8 w-8 sm:h-10 sm:w-10 flex-shrink-0" />
+                <span className="text-[#1e3a8a] truncate text-sm sm:text-base">
+                  {navView === "search" && "Busca"}
+                  {navView === "shelf" && "Estante"}
+                  {navView === "profile" && "Perfil"}
+                  {navView === "menu" && "Menu"}
+                </span>
+              </div>
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={() => setShowNotifications(true)}
-                className="relative"
+                className="relative flex-shrink-0"
               >
-                <Bell className="h-5 w-5" />
+                <Bell className="h-4 w-4 sm:h-5 sm:w-5" />
                 {getUnreadCount() > 0 && (
-                  <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 bg-red-500 text-white border-0">
+                  <Badge className="absolute -top-1 -right-1 h-4 w-4 sm:h-5 sm:w-5 flex items-center justify-center p-0 bg-red-500 text-white border-0 text-[10px] sm:text-xs">
                     {getUnreadCount()}
                   </Badge>
                 )}

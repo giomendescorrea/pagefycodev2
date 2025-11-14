@@ -8,6 +8,7 @@ import { ArrowLeft } from 'lucide-react';
 import { normalizeEmail, isValidEmail } from '../utils/emailUtils';
 import { projectId, publicAnonKey } from '../utils/supabase/info';
 import { toast } from 'sonner@2.0.3';
+import logoHead from 'figma:asset/65228ae796c9e976e1c571fe7e272d268eef730f.png';
 
 interface TwoStepLoginProps {
   onLogin: (email: string, password: string) => void;
@@ -187,7 +188,9 @@ export function TwoStepLogin({ onLogin, onSwitchToSignup, onForgotPassword }: Tw
     <div className="min-h-screen flex items-center justify-center px-4 bg-gradient-to-b from-[#1e3a8a] to-[#1e40af]">
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-1 text-center">
-          <h1 className="text-[#1e40af] mb-2">Pagefy</h1>
+          <div className="flex justify-center mb-4">
+            <img src={logoHead} alt="Pagefy" className="h-32" />
+          </div>
           <CardTitle>{step === 'email' ? 'Entrar' : 'Digite sua senha'}</CardTitle>
           <CardDescription>
             {step === 'email' 

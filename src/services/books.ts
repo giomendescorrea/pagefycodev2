@@ -1,4 +1,5 @@
 import { supabase } from '../utils/supabase/client';
+import * as bookViewsService from './book-views';
 
 export interface Book {
   id: string;
@@ -54,7 +55,7 @@ export async function getBook(bookId: string): Promise<Book | null> {
     }
 
     // Increment view count
-    await incrementViewCount(bookId);
+    await bookViewsService.incrementViewCount(bookId);
 
     return data;
   } catch (error) {
@@ -184,27 +185,6 @@ export async function deleteBook(bookId: string): Promise<void> {
   }
 }
 
-async function incrementViewCount(bookId: string): Promise<void> {
-  try {
-    const { error } = await supabase.rpc('increment_book_views', {
-      book_id: bookId,
-    });
-
-    // If the function doesn't exist, fallback to manual increment
-    if (error && error.message.includes('function')) {
-      const book = await getBook(bookId);
-      if (book) {
-        await supabase
-          .from('books')
-          .update({ views_count: (book.views_count || 0) + 1 })
-          .eq('id', bookId);
-      }
-    }
-  } catch (error) {
-    console.error('Error incrementing view count:', error);
-  }
-}
-
 export async function getUserBooks(userId: string): Promise<{ book: Book; status: string; date_added: string }[]> {
   try {
     const { data, error } = await supabase
@@ -322,11 +302,21 @@ export async function getPublisherBooks(publisherId: string): Promise<Book[]> {
       .order('created_at', { ascending: false });
 
     if (error) {
-      console.error('Get publisher books error:', error);
+      console.error('Get publisher books error:', error)
       throw error;
     }
 
-    return data || [];
+    const books = data || [];
+    
+    // Get view counts for all books
+    const bookIds = books.map(b => b.id);
+    const viewsMap = await bookViewsService.getViewsForBooks(bookIds);
+    
+    // Merge view counts into books
+    return books.map(book => ({
+      ...book,
+      views_count: viewsMap.get(book.id) || 0
+    }));
   } catch (error) {
     console.error('Error in getPublisherBooks:', error);
     throw error;

@@ -1,6 +1,7 @@
 import { BookOpen, Clock, Mail, LogOut } from 'lucide-react';
 import { Button } from './ui/button';
 import { Card, CardContent, CardHeader } from './ui/card';
+import logoHead from 'figma:asset/65228ae796c9e976e1c571fe7e272d268eef730f.png';
 
 interface PendingApprovalScreenProps {
   userName: string;
@@ -14,11 +15,8 @@ export function PendingApprovalScreen({ userName, userEmail, onLogout }: Pending
       <div className="w-full max-w-md">
         <div className="text-center mb-6">
           <div className="flex justify-center mb-3">
-            <div className="h-16 w-16 bg-[#348e91] rounded-full flex items-center justify-center shadow-lg">
-              <BookOpen className="h-8 w-8 text-white" />
-            </div>
+            <img src={logoHead} alt="Pagefy" className="h-32" />
           </div>
-          <h1 className="text-[#348e91] mb-1">Pagefy</h1>
         </div>
 
         <Card className="shadow-lg">

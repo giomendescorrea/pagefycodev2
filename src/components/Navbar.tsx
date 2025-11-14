@@ -1,6 +1,7 @@
 import { BookOpen, LogOut, ArrowLeft } from 'lucide-react';
 import { Button } from './ui/button';
 import { User } from '../App';
+import logoIcon from 'figma:asset/52156acc301f7deb215318a5ad8c77764dbb9d14.png';
 
 interface NavbarProps {
   user: User;
@@ -20,7 +21,7 @@ export function Navbar({ user, onLogout, onBackToBooks }: NavbarProps) {
               </Button>
             )}
             <div className="flex items-center gap-2">
-              <BookOpen className="h-6 w-6 text-[#1e3a8a]" />
+              <img src={logoIcon} alt="Pagefy" className="h-8 w-8" />
               <span className="text-[#1e3a8a]">Pagefy</span>
             </div>
           </div>

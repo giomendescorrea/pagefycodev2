@@ -6,6 +6,7 @@ import { Label } from './ui/label';
 import { Card, CardHeader, CardContent, CardFooter } from './ui/card';
 import { RadioGroup, RadioGroupItem } from './ui/radio-group';
 import { normalizeEmail } from '../utils/emailUtils';
+import logoHead from 'figma:asset/65228ae796c9e976e1c571fe7e272d268eef730f.png';
 
 interface SignupFormProps {
   onSignup: (name: string, email: string, password: string, accountType: 'reader' | 'publisher', cnpj?: string, birthDate?: string) => void;
@@ -158,11 +159,8 @@ export function SignupForm({ onSignup, onSwitchToLogin }: SignupFormProps) {
       <div className="w-full max-w-sm">
         <div className="text-center mb-6">
           <div className="flex justify-center mb-3">
-            <div className="h-16 w-16 bg-[#1e3a8a] rounded-full flex items-center justify-center shadow-lg">
-              <BookOpen className="h-8 w-8 text-white" />
-            </div>
+            <img src={logoHead} alt="Pagefy" className="h-32" />
           </div>
-          <h1 className="text-[#1e3a8a] mb-1">Pagefy</h1>
           <p className="text-gray-600">Crie sua conta</p>
         </div>
         

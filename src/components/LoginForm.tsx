@@ -6,6 +6,7 @@ import { Label } from './ui/label';
 import { Card, CardHeader, CardContent, CardFooter } from './ui/card';
 import { CardTitle, CardDescription } from './ui/card';
 import { normalizeEmail } from '../utils/emailUtils';
+import logoHead from 'figma:asset/65228ae796c9e976e1c571fe7e272d268eef730f.png';
 
 interface LoginFormProps {
   onLogin: (email: string, password: string) => void;
@@ -35,7 +36,9 @@ export function LoginForm({ onLogin, onSwitchToSignup }: LoginFormProps) {
     <div className="min-h-screen flex items-center justify-center px-4 bg-gradient-to-b from-[#f2f2f2] to-white">
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-1 text-center">
-          <h1 className="text-[#1e3a8a] mb-2">Pagefy</h1>
+          <div className="flex justify-center mb-4">
+            <img src={logoHead} alt="Pagefy" className="h-32" />
+          </div>
           <CardTitle>Entrar</CardTitle>
           <CardDescription>
             Entre com suas credenciais para acessar sua conta

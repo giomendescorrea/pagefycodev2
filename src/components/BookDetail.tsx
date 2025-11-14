@@ -6,13 +6,14 @@ import { Textarea } from './ui/textarea';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { Star, MessageCircle, Edit, FileText, Quote as QuoteIcon, Pencil, Trash2, BookmarkPlus, BookmarkCheck, Eye } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Avatar, AvatarFallback } from './ui/avatar';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from './ui/tabs';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from './ui/dialog';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from './ui/alert-dialog';
 import { Badge } from './ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
+import * as bookViewsService from '../services/book-views';
 
 interface BookDetailProps {
   book: Book;
@@ -205,6 +206,14 @@ export function BookDetail({
       .toUpperCase()
       .slice(0, 2);
   };
+
+  useEffect(() => {
+    const recordBookView = async () => {
+      await bookViewsService.recordView(book.id, currentUser.id);
+    };
+
+    recordBookView();
+  }, [book.id, currentUser.id]);
 
   return (
     <div className="pb-6">
@@ -662,72 +671,6 @@ export function BookDetail({
                           
                           <p className="text-gray-700">{review.text}</p>
                         </div>
-                      </div>
-
-                      {/* Comments */}
-                      {reviewComments.length > 0 && (
-                        <div className="ml-12 mt-3 space-y-2 border-l-2 border-gray-200 pl-4">
-                          {reviewComments.map((comment) => (
-                            <div key={comment.id} className="flex items-start gap-2">
-                              <Avatar className="h-7 w-7">
-                                <AvatarFallback className="text-xs">
-                                  {getInitials(comment.userName)}
-                                </AvatarFallback>
-                              </Avatar>
-                              <div className="flex-1 min-w-0">
-                                <div className="flex items-center gap-2 mb-1">
-                                  <span className="text-gray-900">{comment.userName}</span>
-                                  <span className="text-gray-500">·</span>
-                                  <span className="text-gray-500">{formatDate(comment.createdAt)}</span>
-                                </div>
-                                <p className="text-gray-700">{comment.text}</p>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-
-                      {/* Comment Form */}
-                      <div className="ml-12 mt-3">
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => toggleCommentForm(review.id)}
-                          className="text-[#348e91]"
-                        >
-                          <MessageCircle className="h-4 w-4 mr-2" />
-                        </Button>
-
-                        {showCommentForm[review.id] && (
-                          <div className="mt-3 space-y-2">
-                            <Textarea
-                              placeholder="Escreva um comentário..."
-                              value={commentTexts[review.id] || ''}
-                              onChange={(e) =>
-                                setCommentTexts({
-                                  ...commentTexts,
-                                  [review.id]: e.target.value
-                                })
-                              }
-                              rows={2}
-                            />
-                            <div className="flex gap-2">
-                              <Button
-                                size="sm"
-                                onClick={() => handleSubmitComment(review.id)}
-                              >
-                                Enviar
-                              </Button>
-                              <Button
-                                size="sm"
-                                variant="outline"
-                                onClick={() => toggleCommentForm(review.id)}
-                              >
-                                Cancelar
-                              </Button>
-                            </div>
-                          </div>
-                        )}
                       </div>
                     </CardContent>
                   </Card>

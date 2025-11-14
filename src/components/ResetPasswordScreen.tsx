@@ -4,6 +4,7 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { Key, Eye, EyeOff } from 'lucide-react';
+import logoHead from 'figma:asset/65228ae796c9e976e1c571fe7e272d268eef730f.png';
 
 interface ResetPasswordScreenProps {
   onResetPassword: (newPassword: string) => void;
@@ -40,6 +41,9 @@ export function ResetPasswordScreen({ onResetPassword, onBack }: ResetPasswordSc
     <div className="min-h-screen bg-gradient-to-br from-[#348e91] to-[#2a7173] flex items-center justify-center p-4">
       <Card className="w-full max-w-md">
         <CardHeader>
+          <div className="flex justify-center mb-4">
+            <img src={logoHead} alt="Pagefy" className="h-32" />
+          </div>
           <div className="flex items-center gap-3 mb-2">
             <Key className="h-6 w-6 text-[#348e91]" />
             <h2 className="text-gray-900">Nova Senha</h2>

@@ -5,6 +5,7 @@ import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { ArrowLeft, Key } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
+import logoHead from 'figma:asset/65228ae796c9e976e1c571fe7e272d268eef730f.png';
 
 interface ForgotPasswordScreenProps {
   onBack: () => void;
@@ -64,6 +65,9 @@ export function ForgotPasswordScreen({ onBack, onVerify }: ForgotPasswordScreenP
     <div className="min-h-screen bg-gradient-to-br from-[#348e91] to-[#2a7173] flex items-center justify-center p-4">
       <Card className="w-full max-w-md">
         <CardHeader>
+          <div className="flex justify-center mb-4">
+            <img src={logoHead} alt="Pagefy" className="h-32" />
+          </div>
           <div className="flex items-center gap-3 mb-2">
             <Button
               variant="ghost"

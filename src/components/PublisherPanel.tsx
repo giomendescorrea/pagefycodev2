@@ -33,6 +33,7 @@ import * as booksService from '../services/books';
 import * as reviewsService from '../services/reviews';
 import * as quotesService from '../services/quotes';
 import * as commentsService from '../services/comments';
+import * as bookViewsService from '../services/book-views';
 import { PublisherReadingStats } from './PublisherReadingStats';
 
 interface PublisherPanelProps {

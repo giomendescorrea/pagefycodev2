@@ -121,21 +121,6 @@ export function Feed({ posts, onLike, onUserClick, onBookClick }: FeedProps) {
                 <p className="text-gray-700">{post.content}</p>
               )}
             </div>
-
-            {/* Actions */}
-            <div className="flex gap-6 pt-2 border-t border-gray-100">
-              <button
-                className="flex items-center gap-2 text-gray-600 hover:text-red-500 transition-colors"
-                onClick={() => onLike(post.id, post.user_id, post.profile?.name || 'Usuário')}
-              >
-                <Heart className="h-5 w-5" />
-                <span className="text-sm">{post.likes_count || 0}</span>
-              </button>
-              <button className="flex items-center gap-2 text-gray-600 hover:text-[#348e91] transition-colors">
-                <MessageCircle className="h-5 w-5" />
-                <span className="text-sm">{post.comments_count || 0}</span>
-              </button>
-            </div>
           </CardContent>
         </Card>
       ))}

@@ -10,6 +10,7 @@ import * as usersService from '../services/users';
 import * as reviewsService from '../services/reviews';
 import * as notesService from '../services/notes';
 import * as quotesService from '../services/quotes';
+import logoIcon from 'figma:asset/52156acc301f7deb215318a5ad8c77764dbb9d14.png';
 
 interface MenuScreenProps {
   currentUser?: User;
@@ -60,11 +61,7 @@ export function MenuScreen({ currentUser, onNavigateToAdmin, onNavigateToPublish
 
   return (
     <div className="pb-20">
-      <div className="bg-white border-b border-gray-200 sticky top-0 z-10 px-4 py-4">
-        <h2 className="text-gray-900">Estatísticas e Menu</h2>
-      </div>
-
-      <div className="px-4 py-4 space-y-4">
+      <div className="px-3 sm:px-4 py-3 sm:py-4 space-y-4">
         {/* Admin/Publisher Access */}
         {currentUser && (currentUser.role === 'admin' || currentUser.role === 'publisher') && (
           <Card>
